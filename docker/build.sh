@@ -7,4 +7,4 @@ docker run --rm --interactive --tty \
   --volume $PWD/../:/app \
   --volume $HOME/.composer:/tmp \
   --user $(id -u):$(id -g) \
-  composer update --prefer-dist
+  composer update

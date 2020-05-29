@@ -1,42 +1,14 @@
-# phpstorm project files
-/.idea
-/.idea/*
+# idea
 .idea
-
-# netbeans project files
-nbproject
-
-# zend studio for eclipse project files
-.buildpath
-.project
-.settings
-
-# windows thumbnail cache
-Thumbs.db
-
-# composer itself is not needed
-composer.phar
-composer.lock
-
-# Mac DS_Store Files
-.DS_Store
-
-# phpunit itself is not needed
-phpunit.phar
-# local phpunit config
-/phpunit.xml
-
-#vagrant folder
-.vagrant
-
 Homestead.json
 Homestead.yaml
+nbproject/*
+.vscode
+.DS_Store
 
-.vscode/*
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
+# PHP libary
+vendor/*
+runtime/*
 
 # Logs
 logs
@@ -102,10 +74,6 @@ typings/
 # Yarn Integrity file
 .yarn-integrity
 
-# dotenv environment variables file
-.env
-.env.test
-
 # parcel-bundler cache (https://parceljs.org/)
 .cache
 
@@ -127,12 +95,21 @@ typings/
 # DynamoDB Local files
 .dynamodb/
 
-vendor/*
-runtime/*
+# Python
+*.pyc
 
-!*/.gitkeep
-!*/*/.gitkeep
-!*/*/*/.gitkeep
-!*/*/*/*/.gitkeep
-!*/*/*/*/*/.gitkeep
-!*/*/*/*/*/*/.gitkeep
+/node_modules
+/public/hot
+/public/storage
+/storage/*.key
+/storage/logs/*
+/vendor
+/database/*.sqlite
+/database/*.sqlite-journal
+.phpunit.result.cache
+
+npm-debug.log
+yarn-error.log
+
+# include .gitkeep
+!**/.gitkeep

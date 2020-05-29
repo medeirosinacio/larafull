@@ -4,25 +4,48 @@ services:
 
   webserver:
     image: nginx:alpine
+    container_name: ${APP_NAME}-webserver
+    working_dir: /app
     depends_on:
-      - php-fpm
-    container_name: webserver
-    working_dir: /var/www/html
-    volumes:
-      - ../:/var/www/html/
-      - ./nginx/nginx.conf:/etc/nginx/conf.d/zzz99-overrides.conf
-      - ./ssl/:/etc/ssl
+      - phpfpm
     ports:
       - 80:80
       - 443:443
-
-  php-fpm:
-    image: devilbox/php-fpm:7.4-prod
-    container_name: phpfpm
-    working_dir: /var/www/html
     volumes:
-      - ../:/var/www/html/
-      - ./php-fpm/php-fpm.conf:/usr/local/etc/php-fpm.d/zzz99-overrides.conf
-      - ./php-fpm/php-ini-overrides.ini:/usr/local/etc/php/conf.d/zzz99-overrides.ini
-    ports:
-      - 9000:9000
+      - ../:/app
+      - ./nginx/sites-enabled:/etc/nginx/conf.d/:ro
+      - ./nginx:/etc/nginx/default
+      - ./ssl/:/etc/ssl
+      - ${LOGS_FOLDER}:/var/log/nginx/
+    restart: always
+    logging:
+      options:
+        max-size: "50m"
+        max-file: "3"
+
+  phpfpm:
+    image: devilbox/php-fpm:7.4-work
+    container_name: ${APP_NAME}-phpfpm
+    working_dir: /app
+    environment:
+      - NEW_UID=${HOST_UID}
+      - NEW_GID=${HOST_GID}
+      - DEBUG_ENTRYPOINT=${DOCKER_PHPFPM_DEBUG_ENTRYPOINT}
+      - DOCKER_LOGS=${DOCKER_PHPFPM_DOCKER_LOGS}
+      - DISABLE_MODULES=${DOCKER_PHPFPM_DISABLE_MODULES}
+      - TIMEZONE=${TIMEZONE}
+      - TZ=${TIMEZONE}
+    volumes:
+      - ../:/app
+      - ./php-fpm/local.phpfpm.conf:/etc/php-fpm-custom.d/phpfpm.conf
+      - ./php-fpm/local.php.ini:/etc/php-fpm-custom.d/php.ini
+      - ${LOGS_FOLDER}:/var/log/php
+    restart: always
+    logging:
+      options:
+        max-size: "50m"
+        max-file: "3"
+
+volumes:
+  db-data:
+  letsencrypt:
