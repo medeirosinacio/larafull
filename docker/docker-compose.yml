@@ -11,12 +11,14 @@ services:
     ports:
       - 80:80
       - 443:443
+    environment:
+      - TZ=${TIMEZONE}
     volumes:
       - ../:/app
       - ./nginx/sites-enabled:/etc/nginx/conf.d/:ro
       - ./nginx:/etc/nginx/default
       - ./ssl/:/etc/ssl
-      - ${LOGS_FOLDER}:/var/log/nginx/
+      - ${LOGS_FOLDER}/nginx:/var/log/nginx/
     restart: always
     logging:
       options:
@@ -24,7 +26,7 @@ services:
         max-file: "3"
 
   phpfpm:
-    image: devilbox/php-fpm:7.4-work
+    image: devilbox/php-fpm:8.0-work
     container_name: ${APP_NAME}-phpfpm
     working_dir: /app
     environment:
@@ -39,8 +41,42 @@ services:
       - ../:/app
       - ./php-fpm/local.phpfpm.conf:/etc/php-fpm-custom.d/phpfpm.conf
       - ./php-fpm/local.php.ini:/etc/php-fpm-custom.d/php.ini
-      - ${LOGS_FOLDER}:/var/log/php
+      - ${LOGS_FOLDER}/php:/var/log/php
     restart: always
+    logging:
+      options:
+        max-size: "50m"
+        max-file: "3"
+
+  database:
+    image: postgres:13-alpine
+    container_name: ${APP_NAME}-database
+    ports:
+      - "5000:5432"
+    environment:
+      - POSTGRES_USER=${DB_USERNAME}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_DB=${DB_DATABASE}
+      - PGTZ=${TIMEZONE}
+      - TZ=${TIMEZONE}
+    volumes:
+      - db-data:/var/lib/postgresql/data
+      - ./postgres/postgresql.conf:/var/lib/postgresql/data/postgresql.conf
+      - ${LOGS_FOLDER}/postgresql:/logs:z
+    restart: always
+    logging:
+      options:
+        max-size: "50m"
+        max-file: "3"
+
+  memcached:
+    container_name: ${APP_NAME}-memcached
+    image: memcached:latest
+    restart: always
+    environment:
+      - MEMCACHED_MAX_CONNECTIONS=2000
+      - MEMCACHED_CACHE_SIZE=128
+      - TZ=${TIMEZONE}
     logging:
       options:
         max-size: "50m"
