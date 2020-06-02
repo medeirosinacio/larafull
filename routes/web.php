@@ -13,8 +13,4 @@ use Illuminate\Support\Facades\Session;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', function () {
-    Session::put('a', ['SESSIONNN', 'SESSIONNN', 'SESSIONNN']);
-    return view('welcome');
-});
+Route::get("tasks", "TasksController@index");

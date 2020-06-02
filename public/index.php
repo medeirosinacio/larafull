@@ -21,7 +21,12 @@ define('LARAVEL_START', microtime(true));
 |
 */
 
-require __DIR__.'/../vendor/autoload.php';
+require __DIR__ . '/../vendor/autoload.php';
+
+/**
+ * Load custom and fix global funcions
+ */
+require __DIR__ . '/../app/custom/global_function.php';
 
 /*
 |--------------------------------------------------------------------------
@@ -35,7 +40,8 @@ require __DIR__.'/../vendor/autoload.php';
 |
 */
 
-$app = require_once __DIR__.'/../bootstrap/app.php';
+$app = require_once __DIR__ . '/../bootstrap/app.php';
+
 
 /*
 |--------------------------------------------------------------------------

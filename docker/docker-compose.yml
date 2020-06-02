@@ -26,7 +26,7 @@ services:
         max-file: "3"
 
   phpfpm:
-    image: devilbox/php-fpm:7.4-work
+    image: devilbox/php-fpm:8.0-work
     container_name: ${APP_NAME}-phpfpm
     working_dir: /app
     environment:
@@ -86,19 +86,6 @@ services:
       options:
         max-size: "50m"
         max-file: "3"
-
-  phpredisadmin:
-    image: erikdubbelboer/phpredisadmin
-    environment:
-      - ADMIN_USER=admin
-      - ADMIN_PASS=admin
-      - REDIS_1_HOST=laravel-cache
-      - REDIS_1_PORT=6379
-      - REDIS_1_AUTH=local
-    links:
-      - cache
-    ports:
-      - "8080:80"
 
 volumes:
   db-data:
