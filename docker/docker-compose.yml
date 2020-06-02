@@ -26,7 +26,7 @@ services:
         max-file: "3"
 
   phpfpm:
-    image: devilbox/php-fpm:8.0-work
+    image: devilbox/php-fpm:7.4-work
     container_name: ${APP_NAME}-phpfpm
     working_dir: /app
     environment:
@@ -52,7 +52,7 @@ services:
     image: postgres:13-alpine
     container_name: ${APP_NAME}-database
     ports:
-      - "5000:5432"
+      - 5000:5432
     environment:
       - POSTGRES_USER=${DB_USERNAME}
       - POSTGRES_PASSWORD=${DB_PASSWORD}
@@ -69,19 +69,38 @@ services:
         max-size: "50m"
         max-file: "3"
 
-  memcached:
-    container_name: ${APP_NAME}-memcached
-    image: memcached:latest
+  cache:
+    container_name: ${APP_NAME}-cache
+    image: bitnami/redis
     restart: always
+    command: "/opt/bitnami/scripts/redis/run.sh --logfile \"/bitnami/log/redis.log\""
+    volumes:
+      - ${LOGS_FOLDER}/redis:/bitnami/log/
+      - cache-data:/bitnami/redis/data
     environment:
-      - MEMCACHED_MAX_CONNECTIONS=2000
-      - MEMCACHED_CACHE_SIZE=128
+      - REDIS_AOF_ENABLED=yes
+      - DISABLE_COMMANDS=CONFIG
+      - REDIS_PASSWORD=${REDIS_PASSWORD}
       - TZ=${TIMEZONE}
     logging:
       options:
         max-size: "50m"
         max-file: "3"
 
+  phpredisadmin:
+    image: erikdubbelboer/phpredisadmin
+    environment:
+      - ADMIN_USER=admin
+      - ADMIN_PASS=admin
+      - REDIS_1_HOST=laravel-cache
+      - REDIS_1_PORT=6379
+      - REDIS_1_AUTH=local
+    links:
+      - cache
+    ports:
+      - "8080:80"
+
 volumes:
   db-data:
+  cache-data:
   letsencrypt:
