@@ -16,6 +16,16 @@ class ConnectionChecker extends Controller
         } catch (\Exception $e) {
             return $e->getMessage();
         }
+    }
 
+    public function phpinfo()
+    {
+        if (env('APP_ENV') != 'local') {
+            header('HTTP/2 404 Not Found');
+            $_GET['e'] = 404;
+            exit;
+        }
+
+        phpinfo();
     }
 }

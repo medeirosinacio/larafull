@@ -16,6 +16,6 @@ class TasksController extends Controller
         Cache::put('CACHEA', 'CACHEA');
         Session::put('a', ['SESSIONNN', 'SESSIONNN', 'SESSIONNN']);
 
-        return [Redis::get('REDIS__A'), Cache::get('CACHEA'), Session::get('a')];
+        var_dump([Redis::get('REDIS__A'), Cache::get('CACHEA'), Session::get('a')]);
     }
 }

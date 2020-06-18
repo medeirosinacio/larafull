@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get("tasks", "api\TasksController@index");
 Route::get("sys/check/redis", "api\sys\ConnectionChecker@redisTest");
+Route::get("sys/check/php", "api\sys\ConnectionChecker@phpinfo");
 
 //Route::middleware('auth:api')->get('/user', function (Request $request) {
 //    return $request->user();

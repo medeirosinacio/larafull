@@ -13,4 +13,10 @@ use Illuminate\Support\Facades\Session;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+# HELPERS AND STATUS
+Route::get("sys/check/redis", "api\sys\ConnectionChecker@redisTest");
+Route::get("sys/check/php", "api\sys\ConnectionChecker@phpinfo");
+
 Route::get("tasks", "TasksController@index");
+
