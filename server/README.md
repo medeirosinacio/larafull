@@ -8,7 +8,7 @@ Este setup automaticamente ira subir a aplicação e suas dependências fazendo 
 
 ##  Pré-requisitos
 
-* [VirtualBox (6.0.*)](http://www.virtualbox.org/)
+* [VirtualBox (6.1.*)](http://www.virtualbox.org/)
 * [Vagrant (2.2.*)](http://downloads.vagrantup.com/)
 * Arquivos de dump dos bancos para importar apos a instalação
 
@@ -26,6 +26,4 @@ Este setup automaticamente ira subir a aplicação e suas dependências fazendo 
 
  * Você pode mudar qualquer configuração inicial no arquivo .env;
  * Por se tratar de um server local, esse projeto já consta um arquivo .env com as configurações iniciais;
- * O IP de resposta do servidor é 192.168.70.7 e o SSL é configurado para o host https://local.masternetrs.com.br;
- * O setup foi feito com os adicionais de convidado do VB na versão "5.2.2 r119230";
- 
+ * O IP de resposta do servidor é 192.168.70.90 e o SSL é configurado para o host https://local.masternetrs.com.br;

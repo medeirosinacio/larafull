@@ -18,6 +18,7 @@ docker run --rm --interactive \
 composer update
 
 chown vagrant:vagrant /app/*
+chown vagrant:vagrant /home/vagrant/*
 
-artisan config:cache
-artisan config:clear
+docker exec -it laravel-phpfpm php bin/artisan config:cache
+docker exec -it laravel-phpfpm php bin/artisan config:clear
