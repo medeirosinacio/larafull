@@ -1,21 +1,16 @@
 #!/usr/bin/env bash
 
-if [ ! -f /var/firstboot ]
+if [ ! -f /var/firstboot ]; then
 
-    then
+	sudo su
 
-    sudo su
+	source /var/hostvars
 
-    source /var/hostvars
-
-    echo -e "${g}Instalando serviços essenciais...${nc}"
+	echo -e "${g}Instalando serviços essenciais...${nc}"
 	apk add zip unzip curl wget vim tree net-tools
 
-    echo -e "${g}Instalando Git...${nc}"
-    apk add git
-
-    echo -e "${g}Instalando Composer...${nc}"
-    apk add composer
+	echo -e "${g}Instalando Git...${nc}"
+	apk add git
 
 	echo -e "${g}Instalando Docker...${nc}"
 	apk add docker
@@ -25,15 +20,17 @@ if [ ! -f /var/firstboot ]
 	addgroup -S vagrant docker
 
 	echo -e "${g}Instalando docker-compose...${nc}"
-	apk add --no-cache python python-dev py-pip
+	apk add --no-cache python3 python3-dev py-pip
 	apk add --no-cache build-base libffi-dev openssl-dev libgcc gcc libc-dev make
-	pip install --upgrade pip
 	pip install docker-compose
 
-	echo -e "${g}Outras dependências...${nc}"
-	apk add php7
+	echo -e "${g}Configure alias docker command...${nc}"
+	alias artisan="docker exec -it laravel-phpfpm php bin/artisan"
+	alias php="docker exec -it laravel-phpfpm php"
+	alias composer="docker run --rm  --volume /app:/app   --volume $HOME/.composer:/tmp   --user $(id -u):$(id -g)  composer"
+	alias npm="docker run -v /app:/usr/src/app -w /usr/src/app node:8.9.4 npm"
 
-    touch /var/firstboot
+	touch /var/firstboot
 	exit
 
 fi
