@@ -37,9 +37,9 @@ services:
     environment:
       - NEW_UID=${HOST_UID}
       - NEW_GID=${HOST_GID}
-      - DEBUG_ENTRYPOINT=${DOCKER_PHPFPM_DEBUG_ENTRYPOINT}
-      - DOCKER_LOGS=${DOCKER_PHPFPM_DOCKER_LOGS}
-      - DISABLE_MODULES=${DOCKER_PHPFPM_DISABLE_MODULES}
+      - DEBUG_ENTRYPOINT=${PHPFPM_DEBUG_ENTRYPOINT}
+      - DOCKER_LOGS=${PHPFPM_DOCKER_LOGS}
+      - DISABLE_MODULES=${PHPFPM_DISABLE_MODULES}
       - TIMEZONE=${TIMEZONE}
       - TZ=${TIMEZONE}
     volumes:
@@ -99,37 +99,40 @@ services:
   ## DEV ##
   mailhog:
     image: mailhog/mailhog
+    container_name: ${APP_NAME}-mailhog
     restart: always
     ports:
-      - 1025:1025
-      - 8025:8025
+      - ${MAILHOG_WEB_SMTP}:1025
+      - ${MAILHOG_WEB_PORT}:8025
     volumes:
       - ${LOGS_FOLDER}/mailhog:/var/log/mailhog
 
   pgadmin:
     image: dpage/pgadmin4
+    container_name: ${APP_NAME}-pgadmin
     environment:
-      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL:-pgadmin4@pgadmin.org}
-      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD:-admin}
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD}
     volumes:
       - pgadmin:/root/.pgadmin
     ports:
-      - "${PGADMIN_PORT:-5050}:80"
+      - ${PGADMIN_PORT}:80
     restart: unless-stopped
 
   redisadmin:
     image: erikdubbelboer/phpredisadmin
+    container_name: ${APP_NAME}-redisadmin
     restart: always
     environment:
-      - ADMIN_USER=admin
-      - ADMIN_PASS=admin
+      - ADMIN_USER=${REDISADMIN_USER}
+      - ADMIN_PASS=${REDISADMIN_PASS}
       - REDIS_1_HOST=cache
-      - REDIS_1_PORT=6379
+      - REDIS_1_PORT=${REDIS_PORT}
       - REDIS_1_AUTH=${REDIS_PASSWORD}
     links:
       - cache
     ports:
-      - "8081:80"
+      - ${REDISADMIN_WEB_PORT}:80
 
 volumes:
   db-data:

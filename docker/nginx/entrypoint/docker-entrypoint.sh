@@ -13,7 +13,7 @@ rm -rf /tmp/default.conf && cp /etc/nginx/custom/host.conf /tmp/default.conf
 for NAME in $(awk "END { for (name in ENVIRON) { print name; }}" < /dev/null)
 do
     case "$NAME" in
-  *"DOCKER_NGINX_"*)
+  *"NGINX_"*)
     VAL="$(awk "END { printf ENVIRON[\"$NAME\"]; }" < /dev/null)"
 
       # Create temp file to envsubst
