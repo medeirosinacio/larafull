@@ -15,9 +15,9 @@ services:
       - TZ=${TIMEZONE}
     volumes:
       - ../:/app
-      - ./nginx/sites-enabled:/etc/nginx/conf.d/
-      - ./nginx/local.nginx.conf:/etc/nginx/nginx.conf
-      - ./nginx:/etc/nginx/custom/
+      - ./nginx/${APP_ENV}-conf/nginx.conf:/etc/nginx/nginx.conf
+      - ./nginx/${APP_ENV}-conf:/etc/nginx/custom/
+      - ./nginx/entrypoint/docker-entrypoint.sh:/docker-entrypoint.d/1-entrypoint.sh
       - ./ssl/:/etc/ssl/
       - phpsocket:/var/run/
       - ${LOGS_FOLDER}/nginx:/var/log/nginx/
@@ -31,7 +31,7 @@ services:
         max-file: "3"
 
   phpfpm:
-    image: devilbox/php-fpm:8.0-work
+    image: devilbox/php-fpm:7.4-work
     container_name: ${APP_NAME}-phpfpm
     working_dir: /app
     environment:
@@ -56,18 +56,19 @@ services:
         max-file: "3"
 
   database:
-    image: postgres:13-alpine
+    image: postgres:13
     container_name: ${APP_NAME}-database
     ports:
-      - 5000:5432
+      - ${DB_EXTERNAL_PORT}:5432
     environment:
       - POSTGRES_USER=${DB_USERNAME}
       - POSTGRES_PASSWORD=${DB_PASSWORD}
       - POSTGRES_DB=${DB_DATABASE}
+      - PGDATA=/tmp
       - PGTZ=${TIMEZONE}
       - TZ=${TIMEZONE}
     volumes:
-      - db-data:/var/lib/postgresql/data
+      - db-data:/tmp
       - ./postgres/postgresql.conf:/var/lib/postgresql/data/postgresql.conf
       - ${LOGS_FOLDER}/postgresql:/logs:z
     restart: always
@@ -94,8 +95,46 @@ services:
         max-size: "50m"
         max-file: "3"
 
+
+  ## DEV ##
+  mailhog:
+    image: mailhog/mailhog
+    restart: always
+    ports:
+      - 1025:1025
+      - 8025:8025
+    volumes:
+      - ${LOGS_FOLDER}/mailhog:/var/log/mailhog
+
+  pgadmin:
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL:-pgadmin4@pgadmin.org}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD:-admin}
+    volumes:
+      - pgadmin:/root/.pgadmin
+    ports:
+      - "${PGADMIN_PORT:-5050}:80"
+    restart: unless-stopped
+
+  redisadmin:
+    image: erikdubbelboer/phpredisadmin
+    restart: always
+    environment:
+      - ADMIN_USER=admin
+      - ADMIN_PASS=admin
+      - REDIS_1_HOST=cache
+      - REDIS_1_PORT=6379
+      - REDIS_1_AUTH=${REDIS_PASSWORD}
+    links:
+      - cache
+    ports:
+      - "8081:80"
+
 volumes:
   db-data:
   cache-data:
   letsencrypt:
   phpsocket:
+  pgadmin:
+  other:
