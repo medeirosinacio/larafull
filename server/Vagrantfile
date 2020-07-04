@@ -4,7 +4,7 @@ Dir[File.join((Dir.pwd) + "/lib/", "**/*.rb")].each do |f|
 end
 
 # Plugins locais que o projeto requer | Dependência "dependency-manager" para verificar se os plugins estão instalados
-check_plugins ["vagrant-env", "vagrant-disksize", "vagrant-reload", "vagrant-vbguest"]
+check_plugins ["vagrant-env", "vagrant-disksize", "vagrant-reload", "vagrant-vbguest", "vagrant-winnfsd"]
 
 Vagrant.configure("2") do |config|
 
@@ -52,11 +52,12 @@ Vagrant.configure("2") do |config|
 
 	# Pastas mapeadas
 	config.vm.synced_folder ".", "/vagrant", disabled: true
-    config.vm.synced_folder "../", "/app"
+    config.vm.synced_folder "../", "/app", type: 'nfs'
 
     config.vm.provider "virtualbox" do |v|
         v.name =  ENV['VAGRANT_HOSTNAME']
         v.customize ["modifyvm", :id, "--memory", ENV['VAGRANT_MEMORY_MB']]
+        v.customize ["setextradata", :id, "VBoxInternal2/SharedFoldersEnableSymlinksCreate/v-root", "1"]
     end
 
 end

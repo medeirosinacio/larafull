@@ -29,7 +29,7 @@ if [ ! -f /var/firstboot ]; then
 	echo "alias artisan=\"docker exec -it laravel-phpfpm php bin/artisan\"" >> /etc/profile.d/00-aliases.sh
 	echo "alias php=\"docker exec -it laravel-phpfpm php\"" >> /etc/profile.d/00-aliases.sh
 	echo "alias composer=\"docker run --rm  --volume /app:/app   --volume $HOME/.composer:/tmp   --user $(id -u):$(id -g)  composer\"" >> /etc/profile.d/00-aliases.sh
-	echo "alias npm=\"docker run -v /app:/usr/src/app -w /usr/src/app node:8.9.4 npm\"" >> /etc/profile.d/00-aliases.sh
+	echo "alias npm=\"docker run -it -v /app:/usr/src/app -w /usr/src/app node npm\"" >> /etc/profile.d/00-aliases.sh
 
 	touch /var/firstboot
 	exit
