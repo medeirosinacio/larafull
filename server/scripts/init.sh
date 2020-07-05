@@ -3,9 +3,9 @@
 sudo su
 
 source /var/hostvars
+cd /app/docker
 
 echo -e "${g}Subindo aplicação...${nc}"
-cd /app/docker
 docker-compose up -d --force-recreate --build --remove-orphans
 
 echo -e "${g}Atualizando composer...${nc}"
@@ -17,8 +17,13 @@ docker run --rm --interactive \
 --user $(id -u):$(id -g) \
 composer update
 
+echo -e "${g}Atualizando npm...${nc}"
+docker run -it -v /app:/usr/src/app -w /usr/src/app node npm i  --no-bin-links
+
+echo -e "${g}Atualizando permissões...${nc}"
 chown vagrant:vagrant /app/*
 chown vagrant:vagrant /home/vagrant
 
+echo -e "${g}Atualizando cache...${nc}"
 docker exec laravel-phpfpm php bin/artisan config:cache
 docker exec laravel-phpfpm php bin/artisan config:clear
