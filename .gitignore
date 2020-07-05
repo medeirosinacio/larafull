@@ -102,6 +102,7 @@ typings/
 /public/hot
 /public/storage
 /public/mix-manifest.json
+/public/assets
 /storage/*.key
 /storage/logs/*
 /vendor
