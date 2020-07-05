@@ -1,7 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Session;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,3 +20,7 @@ Route::get("sys/check/php", "api\sys\ConnectionChecker@phpinfo");
 
 Route::get("tasks", "TasksController@index");
 
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
