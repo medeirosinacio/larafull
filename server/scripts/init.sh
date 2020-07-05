@@ -20,5 +20,5 @@ composer update
 chown vagrant:vagrant /app/*
 chown vagrant:vagrant /home/vagrant
 
-docker exec -it laravel-phpfpm php bin/artisan config:cache
-docker exec -it laravel-phpfpm php bin/artisan config:clear
+docker exec laravel-phpfpm php bin/artisan config:cache
+docker exec laravel-phpfpm php bin/artisan config:clear

@@ -101,6 +101,8 @@ typings/
 /node_modules
 /public/hot
 /public/storage
+/public/assets
+/public/mix-manifest.json
 /storage/*.key
 /storage/logs/*
 /vendor
