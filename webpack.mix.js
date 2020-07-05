@@ -11,29 +11,5 @@ const mix = require('laravel-mix');
  |
  */
 
-var site_path = 'resources/views/site/';
-var painel_path = 'resources/views/painel/';
-
-var assets = 'public/assets/';
-var site_assets = assets + 'site/';
-var painel_assets = assets + 'painel/';
-
-mix.setPublicPath('public/')
-
-    // Site assets
-    .styles([
-        site_path + 'css/style.css'
-    ], site_assets + 'css/style.css')
-    .scripts([
-        site_path + 'js/script.js'
-    ], site_assets + 'js/script.js')
-
-    // Painel assets
-    .styles([
-        painel_path + 'css/style.css'
-    ], painel_assets + 'css/style.css')
-    .scripts([
-        painel_path + 'js/script.js'
-    ], painel_assets + 'js/script.js')
-
-    .version();
+mix.setPublicPath(path.resolve('./')).js('resources/js/app.js', 'public/js')
+    .sass('resources/sass/app.scss', 'public/css');
