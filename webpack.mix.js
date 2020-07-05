@@ -1,4 +1,7 @@
 const mix = require('laravel-mix');
+require('dotenv').config({path: './docker/.env'});
+
+mix.config.fileLoaderDirs.fonts = 'assets/fonts';
 
 /*
  |--------------------------------------------------------------------------
@@ -19,6 +22,10 @@ var site_assets = assets + 'site/';
 var painel_assets = assets + 'painel/';
 
 mix.setPublicPath('public/')
+
+    // tempalte
+    .scripts("resources/template/" + process.env.APP_TEMPLATE + "/js/*.js", 'public/assets/template/js/app.js')
+    .sass("resources/template/" + process.env.APP_TEMPLATE + "/css/app.scss", 'public/assets/template/css/app.css')
 
     // Site assets
     .styles([
