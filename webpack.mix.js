@@ -24,23 +24,26 @@ var painel_assets = assets + 'painel/';
 mix.setPublicPath('public/')
 
     // tempalte
-    .scripts("resources/template/" + process.env.APP_TEMPLATE + "/js/*.js", 'public/assets/template/js/app.js')
-    .sass("resources/template/" + process.env.APP_TEMPLATE + "/css/app.scss", 'public/assets/template/css/app.css')
+    .scripts("resources/assets/" + process.env.APP_TEMPLATE + "/js/*.js", 'public/assets/template/js/app.js')
+    .sass("resources/assets/" + process.env.APP_TEMPLATE + "/css/app.scss", 'public/assets/template/css/app.css')
 
     // Site assets
     .styles([
-        site_path + 'css/style.css'
+        site_path + 'css/*.css'
     ], site_assets + 'css/style.css')
     .scripts([
-        site_path + 'js/script.js'
+        site_path + 'js/*.js'
     ], site_assets + 'js/script.js')
 
     // Painel assets
     .styles([
-        painel_path + 'css/style.css'
+        painel_path + 'css/*.css'
     ], painel_assets + 'css/style.css')
     .scripts([
-        painel_path + 'js/script.js'
+        painel_path + 'js/*.js'
     ], painel_assets + 'js/script.js')
+
+    // Favicon
+    .copy('resources/images/favicons/rabbit.ico', 'public/favicon.ico')
 
     .version();
