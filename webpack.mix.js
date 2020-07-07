@@ -24,7 +24,7 @@ var painel_assets = assets + 'painel/';
 mix.setPublicPath('public/')
 
     // tempalte
-    .scripts("resources/assets/" + process.env.APP_TEMPLATE + "/js/*.js", 'public/assets/template/js/app.js')
+    .js("resources/assets/" + process.env.APP_TEMPLATE + "/js/*.js", 'public/assets/template/js/app.js')
     .sass("resources/assets/" + process.env.APP_TEMPLATE + "/css/app.scss", 'public/assets/template/css/app.css')
 
     // Site assets

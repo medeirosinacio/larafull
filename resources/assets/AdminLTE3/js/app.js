@@ -12,7 +12,8 @@ try {
     require('overlayscrollbars');
     require('../../../../vendor/almasaeed2010/adminlte/dist/js/adminlte');
     require('bootstrap');
-} catch (e) {}
+} catch (e) {
+}
 
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
