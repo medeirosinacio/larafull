@@ -8,8 +8,9 @@ if [ ! -f /var/updatesystem ]
 
     source /var/hostvars
 
-	echo http://dl-3.alpinelinux.org/alpine/latest-stable/main > /etc/apk/repositories
-    echo http://dl-3.alpinelinux.org/alpine/latest-stable/community >> /etc/apk/repositories
+	echo http://dl-cdn.alpinelinux.org/alpine/latest-stable/community > /etc/apk/repositories
+	echo http://dl-cdn.alpinelinux.org/alpine/v3.12/main >> /etc/apk/repositories
+	echo http://dl-cdn.alpinelinux.org/alpine/v3.12/community >> /etc/apk/repositories
 
     echo -e "${g}Configurando data e hora...${nc}"
 	rm -rf /usr/share/zoneinfo/*
@@ -18,8 +19,8 @@ if [ ! -f /var/updatesystem ]
 
     echo -e "${g}Atualizando sistema...${nc}"
 	apk update
-    apk add --upgrade apk-tools
 	apk upgrade --available
+	sync
 
 	echo -e "${g}Reiniciando o sistema...${nc}"
 	touch /var/updatesystem
