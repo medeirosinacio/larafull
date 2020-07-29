@@ -186,7 +186,10 @@ trait LabelsTrait
      */
     protected function getAutoConvertLabel($field)
     {
-        return __(mb_ucfirst_fix(str_replace('_', ' ', strtolower($field))));
+        $fieldConverted = str_replace('_', ' ', strtolower($field));
+        $fieldUcfirst = mb_strtoupper(mb_substr($fieldConverted, 0, 1)) . mb_substr(mb_strtolower($fieldConverted), 1);
+
+        return $fieldUcfirst;
     }
 
 }
