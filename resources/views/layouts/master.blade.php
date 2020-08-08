@@ -41,11 +41,11 @@
 
     {{-- Load type stylesheets [site or painel] --}}
     @hasSection('site_style')
-        <link rel="stylesheet" href="{{ asset("/assets/site/css/style.css") }}">
+        <link rel="stylesheet" href="{{ asset("site/css/style.css") }}">
     @endif
 
     @hasSection('painel_style')
-        <link rel="stylesheet" href="{{ asset("/assets/painel/css/style.css") }}">
+        <link rel="stylesheet" href="{{ asset("painel/css/style.css") }}">
     @endif
 
     {{-- Custom Stylesheets (post AdminLTE) --}}
@@ -53,7 +53,7 @@
 
     {{-- Favicon --}}
     @if(config('adminlte.use_ico_only'))
-        <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" type="image/x-icon"/>
+        <link rel="shortcut icon" href="{{ asset('favicons/favicon.ico') }}" type="image/x-icon"/>
     @elseif(config('adminlte.use_full_favicon'))
         <link rel="shortcut icon" href="{{ asset('favicons/favicon.ico') }}"/>
         <link rel="apple-touch-icon" sizes="57x57" href="{{ asset('favicons/apple-icon-57x57.png') }}">
@@ -68,7 +68,8 @@
         <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('favicons/favicon-16x16.png') }}">
         <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('favicons/favicon-32x32.png') }}">
         <link rel="icon" type="image/png" sizes="96x96" href="{{ asset('favicons/favicon-96x96.png') }}">
-        <link rel="icon" type="image/png" sizes="192x192" href="{{ asset('favicons/android-icon-192x192.png') }}">
+        <link rel="icon" type="image/png" sizes="192x192"
+              href="{{ asset('favicons/android-icon-192x192.png') }}">
         <link rel="manifest" href="{{ asset('favicons/manifest.json') }}">
         <meta name="msapplication-TileColor" content="#ffffff">
         <meta name="msapplication-TileImage" content="{{ asset('favicon/ms-icon-144x144.png') }}">
@@ -100,11 +101,11 @@
 
 {{-- Load type stylesheets [site or painel] --}}
 @hasSection('site_style')
-    <script src="{{ asset("/assets/site/js/script.js") }}"></script>
+    <script src="{{ asset("site/js/script.js") }}"></script>
 @endif
 
 @hasSection('painel_style')
-    <script src="{{ asset("/assets/painel/js/script.js") }}"></script>
+    <script src="{{ asset("painel/js/script.js") }}"></script>
 @endif
 
 </body>

@@ -28,22 +28,24 @@ mix.setPublicPath('public/')
     .sass("resources/assets/" + process.env.APP_TEMPLATE + "/css/app.scss", 'public/assets/template/css/app.css')
 
     // Site assets
-    .styles([
-        site_path + 'css/*.css'
-    ], site_assets + 'css/style.css')
+    .sass(
+        site_path + 'css/login.scss', site_assets + 'css/style.css', {
+            prependData: '$ASSET_URL:\'' + process.env.ASSET_URL + '\';'
+        })
     .scripts([
         site_path + 'js/*.js'
     ], site_assets + 'js/script.js')
 
     // Painel assets
-    .styles([
-        painel_path + 'css/*.css'
-    ], painel_assets + 'css/style.css')
+    .sass(
+        painel_path + 'css/painel.scss', painel_assets + 'css/style.css', {
+            prependData: '$ASSET_URL:\'' + process.env.ASSET_URL + '\';'
+        })
     .scripts([
         painel_path + 'js/*.js'
     ], painel_assets + 'js/script.js')
 
-    // Favicon
-    .copy('resources/images/favicons/rabbit.ico', 'public/favicon.ico')
-
     .version();
+
+mix.setPublicPath('public/').copy('resources/images/', 'public/assets/images');
+mix.setPublicPath('public/').copy('resources/favicons/', 'public/assets/favicons');

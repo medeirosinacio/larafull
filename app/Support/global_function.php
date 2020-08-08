@@ -217,6 +217,30 @@ if (!function_exists('mb_ucfirst')) {
 }
 
 /**
+ * Convert PHP array into HTML tag attributes formatted
+ * @param array $attributes
+ * @return string
+ */
+function buildAttributesHtml(array $attributes = []): string
+{
+    if (empty($attributes)) {
+        return '';
+    }
+
+    $attributePairs = [];
+    foreach ($attributes as $key => $val) {
+        if (is_int($key)) {
+            $attributePairs[] = $val;
+        } else {
+            $val = htmlspecialchars($val, ENT_QUOTES);
+            $attributePairs[] = "{$key}=\"{$val}\"";
+        }
+    }
+
+    return join(' ', $attributePairs);
+}
+
+/**
  * PHP8
  */
 

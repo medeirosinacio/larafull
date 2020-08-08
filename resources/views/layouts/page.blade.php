@@ -1,4 +1,6 @@
-@extends('adminlte::master')
+@extends('layouts.master')
+
+@section('painel_style', true)
 
 @inject('layoutHelper', \JeroenNoten\LaravelAdminLte\Helpers\LayoutHelper)
 
@@ -22,14 +24,14 @@
 
         {{-- Top Navbar --}}
         @if($layoutHelper->isLayoutTopnavEnabled())
-            @include('adminlte::partials.navbar.navbar-layout-topnav')
+            @include('layouts.partials.navbar.navbar-layout-topnav')
         @else
-            @include('adminlte::partials.navbar.navbar')
+            @include('layouts.partials.navbar.navbar')
         @endif
 
         {{-- Left Main Sidebar --}}
         @if(!$layoutHelper->isLayoutTopnavEnabled())
-            @include('adminlte::partials.sidebar.left-sidebar')
+            @include('layouts.partials.sidebar.left-sidebar')
         @endif
 
         {{-- Content Wrapper --}}
@@ -53,12 +55,12 @@
 
         {{-- Footer --}}
         @hasSection('footer')
-            @include('adminlte::partials.footer.footer')
+            @include('layouts.partials.footer.footer')
         @endif
 
         {{-- Right Control Sidebar --}}
         @if(config('adminlte.right_sidebar'))
-            @include('adminlte::partials.sidebar.right-sidebar')
+            @include('layouts.partials.sidebar.right-sidebar')
         @endif
 
     </div>
