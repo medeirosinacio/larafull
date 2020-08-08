@@ -23,11 +23,6 @@ define('LARAVEL_START', microtime(true));
 
 require __DIR__ . '/../vendor/autoload.php';
 
-/**
- * Load custom and fix global funcions
- */
-require __DIR__ . '/../app/custom/global_function.php';
-
 /*
 |--------------------------------------------------------------------------
 | Turn On The Lights

@@ -1,38 +1,46 @@
 <?php
 
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+// Public URL - Login
+// Authentication Routes...
+Route::get('/', 'Auth\LoginController@showLoginForm')->name('login');
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/login', fn() => redirect('/'));
+Route::post('login', 'Auth\LoginController@login');
+Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 
-Auth::routes();
+// Registration Routes...
+Route::get('register', 'Auth\RegisterController@showRegistrationForm');
+Route::post('register', 'Auth\RegisterController@register');
+
+// Password Reset Routes...
+Route::get('password/reset/{token?}', 'Auth\ResetPasswordController@showResetForm');
+Route::post('password/email', 'Auth\ResetPasswordController@sendResetLinkEmail');
+Route::post('password/reset', 'Auth\ResetPasswordController@reset');
+
 
 // PAINEL
 Route::prefix('painel')->middleware('auth')->group(function () {
 
-    Route::get("inicio", "DashboardController@dashboard");
+    Route::get('inicio', 'HomeController@index')->name('home');
+
+    Route::get('usuarios/listar', 'UsersController@list');
+    Route::get('usuarios/cadastrar', 'UsersController@showStoreForm');
+    Route::post('usuarios/cadastrar', 'UsersController@store');
+    Route::get('usuarios/{id}', 'UsersController@show');
+    Route::get('usuarios/{id}/editar', 'UsersController@showUpdateForm');
+    Route::post('usuarios/{id}/editar', 'UsersController@update');
+
+    # HELPERS AND STATUS
+    Route::get("sys/check/redis", "api\sys\ConnectionChecker@redisTest");
+    Route::get("sys/check/php", "api\sys\ConnectionChecker@phpinfo");
+    Route::get("tasks", "TasksController@index");
 
 });
 
-# HELPERS AND STATUS
-Route::get("sys/check/redis", "api\sys\ConnectionChecker@redisTest");
-Route::get("sys/check/php", "api\sys\ConnectionChecker@phpinfo");
 
-Route::get("tasks", "TasksController@index");
 
-Route::get('/home', 'HomeController@index')->name('home');
+
 
 

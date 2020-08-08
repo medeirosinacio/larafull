@@ -103,6 +103,7 @@ typings/
 /public/storage
 /public/assets
 /public/mix-manifest.json
+/public/favicon.ico
 /storage/*.key
 /storage/logs/*
 /vendor

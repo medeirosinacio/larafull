@@ -14,7 +14,7 @@ return [
     |
     */
 
-    'title' => 'AdminLTE 3',
+    'title' => env('APP_NAME'),
     'title_prefix' => '',
     'title_postfix' => '',
 
@@ -30,7 +30,7 @@ return [
     |
     */
 
-    'use_ico_only' => false,
+    'use_ico_only' => true,
     'use_full_favicon' => false,
 
     /*
@@ -45,12 +45,12 @@ return [
     |
     */
 
-    'logo' => '<b>Admin</b>LTE',
-    'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
-    'logo_img_class' => 'brand-image img-circle elevation-3',
+    'logo' => '',
+    'logo_img' => env('ASSET_URL') . '/images/logos/rabbit-system-white.png',
+    'logo_img_class' => 'brand-image img-circle elevation-3 logo-login',
     'logo_img_xl' => null,
     'logo_img_xl_class' => 'brand-image-xs',
-    'logo_img_alt' => 'AdminLTE',
+    'logo_img_alt' => mb_strtolower(env('APP_NAME')) . '-logo',
 
     /*
     |--------------------------------------------------------------------------
@@ -64,7 +64,7 @@ return [
     |
     */
 
-    'usermenu_enabled' => true,
+    'usermenu_enabled' => false,
     'usermenu_header' => false,
     'usermenu_header_class' => 'bg-primary',
     'usermenu_image' => false,
@@ -101,12 +101,12 @@ return [
     |
     */
 
-    'classes_auth_card' => 'card-outline card-primary',
+    'classes_auth_card' => 'card-outline',
     'classes_auth_header' => '',
     'classes_auth_body' => '',
     'classes_auth_footer' => '',
     'classes_auth_icon' => '',
-    'classes_auth_btn' => 'btn-flat btn-primary',
+    'classes_auth_btn' => 'btn-flat btn-default',
 
     /*
     |--------------------------------------------------------------------------
@@ -120,15 +120,15 @@ return [
     |
     */
 
-    'classes_body' => '',
+    'classes_body' => 'text-size-all',
     'classes_brand' => '',
     'classes_brand_text' => '',
     'classes_content_wrapper' => '',
     'classes_content_header' => '',
     'classes_content' => '',
-    'classes_sidebar' => 'sidebar-dark-primary elevation-4',
+    'classes_sidebar' => 'sidebar-dark-default elevation-4',
     'classes_sidebar_nav' => '',
-    'classes_topnav' => 'navbar-white navbar-light',
+    'classes_topnav' => 'navbar-dark navbar-dakr',
     'classes_topnav_nav' => 'navbar-expand',
     'classes_topnav_container' => 'container',
 
@@ -145,11 +145,11 @@ return [
     */
 
     'sidebar_mini' => true,
-    'sidebar_collapse' => false,
-    'sidebar_collapse_auto_size' => false,
-    'sidebar_collapse_remember' => false,
+    'sidebar_collapse' => true,
+    'sidebar_collapse_auto_size' => true,
+    'sidebar_collapse_remember' => true,
     'sidebar_collapse_remember_no_transition' => true,
-    'sidebar_scrollbar_theme' => 'os-theme-light',
+    'sidebar_scrollbar_theme' => 'os-light-dark',
     'sidebar_scrollbar_auto_hide' => 'l',
     'sidebar_nav_accordion' => true,
     'sidebar_nav_animation_speed' => 300,
@@ -171,7 +171,7 @@ return [
     'right_sidebar_theme' => 'dark',
     'right_sidebar_slide' => true,
     'right_sidebar_push' => true,
-    'right_sidebar_scrollbar_theme' => 'os-theme-light',
+    'right_sidebar_scrollbar_theme' => 'os-theme-dark',
     'right_sidebar_scrollbar_auto_hide' => 'l',
 
     /*
@@ -188,7 +188,7 @@ return [
 
     'use_route_url' => false,
 
-    'dashboard_url' => 'home',
+    'dashboard_url' => 'painel/inicio',
 
     'logout_url' => 'logout',
 
@@ -232,86 +232,86 @@ return [
 
     'menu' => [
         [
-            'text' => 'search',
+            'text' => 'Pesquisar...',
             'search' => true,
             'topnav' => true,
         ],
         [
-            'text' => 'blog',
-            'url' => 'admin/blog',
-            'can' => 'manage-blog',
+            'text' => '',
+            'url' => '',
+            'icon' => 'fas fa-fw fa-bell',
+            'topnav_right' => true,
         ],
         [
-            'text' => 'pages',
-            'url' => 'admin/pages',
-            'icon' => 'far fa-fw fa-file',
-            'label' => 4,
-            'label_color' => 'success',
+            'text' => '',
+            'url' => '',
+            'icon' => 'fas fa-fw fa-phone',
+            'topnav_right' => true,
         ],
-        ['header' => 'account_settings'],
+        // MAIN
         [
-            'text' => 'profile',
-            'url' => 'admin/settings',
-            'icon' => 'fas fa-fw fa-user',
-        ],
-        [
-            'text' => 'change_password',
-            'url' => 'admin/settings',
-            'icon' => 'fas fa-fw fa-lock',
+            'text' => 'Inicio',
+            'url' => 'painel/inicio',
+            'icon' => 'fa fa-home',
         ],
         [
-            'text' => 'multilevel',
-            'icon' => 'fas fa-fw fa-share',
+            'text' => 'Cliente',
+            'icon' => 'fa fa-users',
             'submenu' => [
                 [
-                    'text' => 'level_one',
+                    'text' => 'Novo contrato',
                     'url' => '#',
-                ],
+                ]
+            ]
+        ],
+        [
+            'text' => 'Configuração',
+            'icon' => 'fa fa-cog',
+            'submenu' => [
                 [
-                    'text' => 'level_one',
-                    'url' => '#',
+                    'text' => 'Usuários',
                     'submenu' => [
                         [
-                            'text' => 'level_two',
-                            'url' => '#',
+                            'text' => 'Listar',
+                            'url' => 'painel/usuarios/listar',
                         ],
                         [
-                            'text' => 'level_two',
-                            'url' => '#',
-                            'submenu' => [
-                                [
-                                    'text' => 'level_three',
-                                    'url' => '#',
-                                ],
-                                [
-                                    'text' => 'level_three',
-                                    'url' => '#',
-                                ],
-                            ],
-                        ],
-                    ],
-                ],
+                            'text' => 'Cadastrar',
+                            'url' => 'painel/usuarios/cadastrar',
+                        ]
+                    ]
+                ]
+            ]
+        ],
+        [
+            'text' => 'Ferramentas',
+            'icon' => 'fas fa-toolbox',
+            'submenu' => [
                 [
-                    'text' => 'level_one',
+                    'text' => 'Novo contrato',
                     'url' => '#',
-                ],
-            ],
-        ],
-        ['header' => 'labels'],
-        [
-            'text' => 'important',
-            'icon_color' => 'red',
-            'url' => '#',
+                ]
+            ]
         ],
         [
-            'text' => 'warning',
-            'icon_color' => 'yellow',
-            'url' => '#',
+            'text' => 'Documentos',
+            'icon' => 'fa fa-book',
+            'submenu' => [
+                [
+                    'text' => 'Novo contrato',
+                    'url' => '#',
+                ]
+            ]
         ],
         [
-            'text' => 'information',
-            'icon_color' => 'cyan',
-            'url' => '#',
+            'text' => 'Log',
+            'icon' => 'fa fa-history',
+            'submenu' => [
+                [
+                    'text' => 'Novo contrato',
+                    'url' => '#',
+                ]
+            ]
         ],
     ],
 
