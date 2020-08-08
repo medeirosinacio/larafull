@@ -14,9 +14,6 @@ if [ ! -f /var/firstboot ]
     echo -e "${g}Instalando Git...${nc}"
     apk add git
 
-    echo -e "${g}Instalando Composer...${nc}"
-    apk add composer
-
 	echo -e "${g}Instalando Docker...${nc}"
 	apk add docker
 	rc-update add docker boot
@@ -27,8 +24,12 @@ if [ ! -f /var/firstboot ]
 	echo -e "${g}Instalando docker-compose...${nc}"
 	apk add docker-compose
 
-	echo -e "${g}Outras dependências...${nc}"
-	apk add php7
+	echo -e "${g}Setando alias...${nc}"
+    echo "alias artisan=\"docker exec laravel-phpfpm php bin/artisan\"" >> /home/vagrant/.bash_profile
+    echo "alias composer=\"docker run --rm --interactive --volume /app:/app --volume ${COMPOSER_HOME:-$HOME/.composer}:/tmp --user $(id -u):$(id -g) composer\"" >> /home/vagrant/.bash_profile
+    echo "alias artisan=\"docker exec laravel-phpfpm php bin/artisan\"" >> /home/vagrant/.bash_profile
+    echo "alias cache=\"docker exec laravel-phpfpm php bin/artisan config:cache && docker exec laravel-phpfpm php bin/artisan config:clear\"" >> /home/vagrant/.bash_profile
+    echo "alias npm=\"docker run -v /app:/usr/src/app -w /usr/src/app node:alpine npm\"" >> /home/vagrant/.bash_profile
 
     touch /var/firstboot
 	exit
