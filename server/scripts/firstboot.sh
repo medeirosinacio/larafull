@@ -1,16 +1,21 @@
 #!/usr/bin/env bash
 
-if [ ! -f /var/firstboot ]; then
+if [ ! -f /var/firstboot ]
 
-	sudo su
+    then
 
-	source /var/hostvars
+    sudo su
 
-	echo -e "${g}Instalando serviços essenciais...${nc}"
+    source /var/hostvars
+
+    echo -e "${g}Instalando serviços essenciais...${nc}"
 	apk add zip unzip curl wget vim tree net-tools
 
-	echo -e "${g}Instalando Git...${nc}"
-	apk add git
+    echo -e "${g}Instalando Git...${nc}"
+    apk add git
+
+    echo -e "${g}Instalando Composer...${nc}"
+    apk add composer
 
 	echo -e "${g}Instalando Docker...${nc}"
 	apk add docker
@@ -20,18 +25,12 @@ if [ ! -f /var/firstboot ]; then
 	addgroup -S vagrant docker
 
 	echo -e "${g}Instalando docker-compose...${nc}"
-	apk add --no-cache python3 python3-dev py-pip
-	apk add --no-cache build-base libffi-dev openssl-dev libgcc gcc libc-dev make
-	pip install docker-compose
+	apk add docker-compose
 
-	echo -e "${g}Configure alias docker command...${nc}"
-	touch /etc/profile.d/00-aliases.sh
-	echo "alias artisan=\"docker exec -it laravel-phpfpm php bin/artisan\"" >> /etc/profile.d/00-aliases.sh
-	echo "alias php=\"docker exec -it laravel-phpfpm php\"" >> /etc/profile.d/00-aliases.sh
-	echo "alias composer=\"docker run --rm  --volume /app:/app   --volume $HOME/.composer:/tmp   --user $(id -u):$(id -g)  composer\"" >> /etc/profile.d/00-aliases.sh
-	echo "alias npm=\"docker run -it -v /app:/usr/src/app -w /usr/src/app node npm\"" >> /etc/profile.d/00-aliases.sh
+	echo -e "${g}Outras dependências...${nc}"
+	apk add php7
 
-	touch /var/firstboot
+    touch /var/firstboot
 	exit
 
 fi
