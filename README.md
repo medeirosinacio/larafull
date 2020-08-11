@@ -1,4 +1,4 @@
-<p align="center"><img src="./resources/images/logos/rabbit-logo-md.png" width="400"></p>
+<p align="center"><img src="./resources/images/logos/larafull-logo-orange.png" width="400"></p>
 
 <p align="center">
 <a href="https://github.com/medeirosinacio/laravel7-my-startpackk"><img src="https://img.shields.io/badge/laravel-v7.0-orange" alt="License"></a>

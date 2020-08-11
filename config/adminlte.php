@@ -46,9 +46,9 @@ return [
     */
 
     'logo' => '',
-    'logo_img' => env('ASSET_URL') . '/images/logos/rabbit-system-white.png',
+    'logo_img' => env('ASSET_URL') . '/images/logos/logo-sm-white-50x50.png',
     'logo_img_class' => 'brand-image img-circle elevation-3 logo-login',
-    'logo_img_xl' => null,
+    'logo_img_xl' => env('ASSET_URL') . '/images/logos/logo-white-390x90.png',
     'logo_img_xl_class' => 'brand-image-xs',
     'logo_img_alt' => mb_strtolower(env('APP_NAME')) . '-logo',
 
@@ -255,16 +255,6 @@ return [
             'icon' => 'fa fa-home',
         ],
         [
-            'text' => 'Cliente',
-            'icon' => 'fa fa-users',
-            'submenu' => [
-                [
-                    'text' => 'Novo contrato',
-                    'url' => '#',
-                ]
-            ]
-        ],
-        [
             'text' => 'Configuração',
             'icon' => 'fa fa-cog',
             'submenu' => [
@@ -284,35 +274,51 @@ return [
             ]
         ],
         [
-            'text' => 'Ferramentas',
-            'icon' => 'fas fa-toolbox',
-            'submenu' => [
-                [
-                    'text' => 'Novo contrato',
-                    'url' => '#',
-                ]
-            ]
-        ],
-        [
-            'text' => 'Documentos',
+            'text' => 'Projeto',
             'icon' => 'fa fa-book',
             'submenu' => [
                 [
-                    'text' => 'Novo contrato',
+                    'text' => 'Documentação',
+                    'target' => '_blank',
                     'url' => '#',
-                ]
-            ]
-        ],
-        [
-            'text' => 'Log',
-            'icon' => 'fa fa-history',
-            'submenu' => [
+                ],
                 [
-                    'text' => 'Novo contrato',
-                    'url' => '#',
+                    'text' => 'Documentação Laravel',
+                    'target' => '_blank',
+                    'url' => 'https://laravel.com/',
+                ],
+                [
+                    'text' => 'Github Larafull',
+                    'target' => '_blank',
+                    'url' => 'https://github.com/medeirosinacio/larafull',
+                ],
+                [
+                    'text' => 'AdminLTE 3.0',
+                    'submenu' => [
+                        [
+                            'text' => 'Demo',
+                            'target' => '_blank',
+                            'url' => 'https://adminlte.io/themes/dev/AdminLTE/index.html',
+                        ],
+                        [
+                            'text' => 'Documentação',
+                            'target' => '_blank',
+                            'url' => 'https://adminlte.io/docs/3.0/layout.html',
+                        ],
+                        [
+                            'text' => 'Laravel AdminLTE',
+                            'target' => '_blank',
+                            'url' => 'https://github.com/jeroennoten/Laravel-AdminLTE/#63-logo',
+                        ],
+                    ],
+                ],
+                [
+                    'text' => 'Laravel Collective',
+                    'target' => '_blank',
+                    'url' => 'https://laravelcollective.com/docs/6.0/html',
                 ]
             ]
-        ],
+        ]
     ],
 
     /*

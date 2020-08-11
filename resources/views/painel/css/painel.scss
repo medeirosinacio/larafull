@@ -55,7 +55,18 @@ body {
 }
 
 img.brand-image.img-circle.elevation-3.logo-login {
-    display: none;
+    border-radius: 0;
+    right: 0;
+    box-shadow: none !important;
+    text-shadow: none;
+}
+
+img.brand-image-xs.logo-xl {
+    padding: 0;
+    margin: 5px auto;
+    top: 0;
+    max-height: 45px;
+    padding: 5px;
 }
 
 .nav-pills .nav-link {
@@ -123,13 +134,18 @@ img.brand-image.img-circle.elevation-3.logo-login {
     padding: 12px 0.5rem;
 }
 
-.nav a.nav-link i.far.fa-fw.fa-circle {
+body:not(.sidebar-collapse) .nav a.nav-link i.far.fa-fw.fa-circle {
     color: transparent;
 }
 
 [class*='sidebar-dark-'] .nav-treeview > .nav-item > .nav-link.active, [class*='sidebar-dark-'] .nav-treeview > .nav-item > .nav-link.active:hover, [class*='sidebar-dark-'] .nav-treeview > .nav-item > .nav-link.active:focus {
     background-color: rgba(84, 84, 84, 0.9) !important;
     color: #ffffff !important;
+}
+
+.content-wrapper > .content {
+    padding: 0 0.5rem;
+    padding-bottom: 35px;
 }
 
 
@@ -139,6 +155,11 @@ img.brand-image.img-circle.elevation-3.logo-login {
 
 .card-header {
     padding: 0.5rem 1.25rem !important;
+}
+
+.card {
+    padding-bottom: 1rem;
+    margin-bottom: 0;
 }
 
 .card-title {
@@ -196,7 +217,8 @@ img.brand-image.img-circle.elevation-3.logo-login {
 
 
 @media (min-width: 768px) {
-    body:not(.sidebar-mini-md) .content-wrapper, body:not(.sidebar-mini-md) .main-footer, body:not(.sidebar-mini-md) .main-header {
+    body:not(.sidebar-collapse) .content-wrapper,
+    body:not(.sidebar-collapse) .main-footer, body:not(.sidebar-collapse) .main-header {
         transition: margin-left 0.3s ease-in-out;
         margin-left: $menu-width;
     }
@@ -208,7 +230,6 @@ img.brand-image.img-circle.elevation-3.logo-login {
 
 @media (max-width: 991.98px) {
     :not(.layout-fixed) .main-sidebar {
-        top: 50px;
         box-shadow: 0 14px 0px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22) !important;
     }
 
@@ -246,6 +267,21 @@ img.brand-image.img-circle.elevation-3.logo-login {
     }
 }
 
+@media (max-width: 767.98px) {
+    .main-sidebar, .main-sidebar::before {
+        box-shadow: none !important;
+        margin-left: 0;
+        margin-top: 50px;
+    }
+
+    :not(.layout-fixed) .main-sidebar {
+        height: inherit;
+        min-height: calc(100% - 50px);
+        position: absolute;
+        top: 0;
+    }
+
+}
 
 // field
 
