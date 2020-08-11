@@ -1,24 +1,27 @@
 <p align="center"><img src="./resources/images/logos/larafull-logo-orange.png" width="400"></p>
 
 <p align="center">
-<a href="https://github.com/medeirosinacio/laravel7-my-startpackk"><img src="https://img.shields.io/badge/laravel-v7.0-orange" alt="License"></a>
-<a href="https://github.com/medeirosinacio/laravel7-my-startpackk"><img src="https://img.shields.io/badge/php-v7.4.9-blue" alt="License"></a><a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
+<a href="https://github.com/medeirosinacio/laravel7-my-startpackk"><img src="https://img.shields.io/badge/laravel-v7.0-orange" alt="License"></a>	<a href="https://github.com/medeirosinacio/laravel7-my-startpackk"><img src="https://img.shields.io/badge/php-v7.4.9-blue" alt="License"></a>	<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
 </p>
 
 
 
 
 
-# <span style="color:#FF2D20;font-weight:300">*# What is Lorem Ipsum?*</span>
 
-**Lorem Ipsum** is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+# *# Sobre*
 
-- Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-- Cras vestibulum augue nec commodo dapibus.
-- Sed sed metus vitae nunc malesuada tristique sed a mauris.
-- Phasellus sit amet nisl semper, aliquet ipsum quis, fringilla nisl.
-- Nam placerat odio interdum ex malesuada, et malesuada mi pulvinar.
+Bem-vindo ao [Larafull](https://github.com/medeirosinacio/larafull), projeto baseado no framework [Laravel](https://laravel.com/) que reúne todas — ou tenta ter todas — as características e funcionalidades que qualquer sistema genérico precisa. Usando as mais atuais tecnologias, esse projeto visa prover um conjunto de ferramentas, pacotes e configuração prontas, com um ambiente completo subindo com um comando.
+
+Principais características:
+
+- PHP em sua última versão estável, com codigo e sua sintaxe mais atual;
+- Laravel em sua última versão já com pacotes configurados (Cache, Session, DB, Seed, User, Login, Token, ACL, Log, ...);
+- Template de administração pronto e componentizado para tabelas, listas, perfil, CRUD, e muito mais (chega de lidar com front-end);
+- Diversas classes com funcionalidades genéricas  para estender seus modelos, migrations e validações;
+- Projeto em 100% em [Docker](https://www.docker.com/) configurado para subir individualmente ou via [Vagrant](https://www.vagrantup.com/);
 
 ## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+The Larafull is an open source project based on the Laravel framework licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
