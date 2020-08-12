@@ -7,7 +7,7 @@ bol $footer -Define se o card tera um rodape
 string $color - cor do detahle do card ['primary', 'danger', ...]
 string $title - titulo do card
 array header_btn - array com informações dos botoes do cabeçalho,
-                   o array pode conter ['name', 'url', 'icon', 'submenu' =>  ['name', 'url', 'icon']]
+                   o array pode conter ['name', 'link', 'icon', 'submenu' =>  ['name', 'link', 'icon']]
 
 Como usar:
  @include('layouts.partials.card', [
@@ -23,7 +23,7 @@ Como usar:
                     [
                         'name' => 'Editar menu a',
                         'icon' => 'fas fa-pencil-alt',
-                        'url' => 'painel/a'
+                        'link' => 'painel/a'
                     ],
                  ],
             ],
@@ -43,7 +43,7 @@ Como usar:
                             @if(empty($btn['submenu']))
                                 <button type="button"
                                         title="{{$btn['name'] ?? ''}}"
-                                        onclick="location.href='/{{$btn['url'] ?? ''}}';"
+                                        onclick="location.href='/{{$btn['link'] ?? ''}}';"
                                         class="btn btn-{{ $btn['color'] ?? "primary" }} {{ $btn['class'] ?? "" }}">
                                     {!! $btn['icon'] ? "<i class='{$btn['icon']} fa-xs mr-1'></i>" : "" !!}
                                     {{$btn['name'] ?? ''}}
@@ -60,7 +60,7 @@ Como usar:
                                     <ul class="dropdown-menu">
                                         @foreach($btn['submenu'] as $sub_btn)
                                             <li>
-                                                <a href="/{{ $sub_btn['url'] ?? "" }}"
+                                                <a href="/{{ $sub_btn['link'] ?? "" }}"
                                                    class="{{ $sub_btn['class'] ?? "" }}"
                                                    title="{{$sub_btn['name'] ?? ''}}"
                                                 >
