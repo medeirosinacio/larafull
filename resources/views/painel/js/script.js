@@ -71,6 +71,16 @@ function redirect(url) {
     }
 }
 
+// Criação dinamica de links ajax
+var ajaxLink = getElementsByAttribute('data-link-ajax', 'true');
+$(ajaxLink).on('click', function (e) {
+
+    var type = $(this).attr('data-json') ? 'POST' : 'GET';
+
+    e.preventDefault();
+    return new AjaxRequest($(this).attr('data-id'), 'data-id').setType(type).send() || false;
+});
+
 
 /**
  * Scripts de inicio

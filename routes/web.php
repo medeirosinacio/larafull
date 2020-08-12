@@ -32,10 +32,9 @@ Route::prefix('painel')->middleware('auth')->group(function () {
     Route::get('usuarios/{id}/editar', 'UsersController@showUpdateForm');
     Route::post('usuarios/{id}/editar', 'UsersController@update');
 
-    # HELPERS AND STATUS
-    Route::get("sys/check/redis", "api\sys\ConnectionChecker@redisTest");
-    Route::get("sys/check/php", "api\sys\ConnectionChecker@phpinfo");
-    Route::get("tasks", "TasksController@index");
+    # SUPORT
+    Route::get("sys/clean-cache", "Controller@cleanCache");
+    Route::get("sys/phpinfo", "Controller@phpinfo");
 
 });
 

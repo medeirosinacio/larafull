@@ -1,16 +1,19 @@
 class AjaxRequest {
 
-    constructor(id) {
+    constructor(id, attr = 'id') {
 
         this._id = id;
+        this._element = this.getElementsByAttribute(attr, this._id);
         this._form = document.getElementById(this._id);
+
+        this.is_form = this.getElementsType();
 
         this._type = 'POST';
         this._headers = {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')};
-        this._url = this._form.getAttribute("action") ||
-            this._form.getAttribute("href") ||
-            this._form.getAttribute("url") || '/';
-        this._data = new FormData(this._form);
+        this._url = $(this._element).attr("action") ||
+            $(this._element).attr("href") ||
+            $(this._element).attr("url") || '/';
+        this._data = this.is_form ? new FormData(this._form) : $(this._element).attr("data-json");
         this._dataType = 'json';
         this._cache = false;
         this._contentType = false;
@@ -37,9 +40,9 @@ class AjaxRequest {
             context: this,
             beforeSend: function () {
 
-                $(this._form).find(':input[type=submit],button').prop('disabled', true);
-                $(this._form).find("[type=submit]").addClass('load_frame');
-                $(this._form).find('.form-group.field').removeClass('has-error');
+                $(this._element).find(':input[type=submit],button').prop('disabled', true);
+                $(this._element).find("[type=submit]").addClass('load_frame');
+                $(this._element).find('.form-group.field').removeClass('has-error');
 
                 if (this._beforeSend && {}.toString.call(this._beforeSend) === '[object Function]') {
                     this._beforeSend();
@@ -48,8 +51,8 @@ class AjaxRequest {
             },
             success: function (response) {
 
-                $(this._form).find(':input[type=submit],button').prop('disabled', false);
-                $(this._form).find("[type=submit]").removeClass('load_frame');
+                $(this._element).find(':input[type=submit],button').prop('disabled', false);
+                $(this._element).find("[type=submit]").removeClass('load_frame');
 
                 if (this._success && {}.toString.call(this._success) === '[object Function]') {
                     this._success();
@@ -73,8 +76,8 @@ class AjaxRequest {
             },
             error: function (err) {
 
-                $(this._form).find(':input[type=submit],button').prop('disabled', false);
-                $(this._form).find("[type=submit]").removeClass('load_frame');
+                $(this._element).find(':input[type=submit],button').prop('disabled', false);
+                $(this._element).find("[type=submit]").removeClass('load_frame');
 
                 if (this._error && {}.toString.call(this._error) === '[object Function]') {
                     this._error();
@@ -167,5 +170,32 @@ class AjaxRequest {
     onError(value) {
         this._error = value;
         return this;
+    }
+
+    getElementsByAttribute(attr, value) {
+        var match = [];
+        /* Get the droids we are looking for*/
+        var elements = document.getElementsByTagName("*");
+        /* Loop through all elements */
+        for (var ii = 0, ln = elements.length; ii < ln; ii++) {
+            if (elements[ii].nodeType === 1) {
+                if (elements[ii].name != null) {
+                    /* If a value was passed, make sure it matches the elements */
+                    if (value) {
+                        if (elements[ii].getAttribute(attr) === value)
+                            match.push(elements[ii]);
+                    } else {
+                        /* Else, simply push it */
+                        match.push(elements[ii]);
+                    }
+                }
+            }
+        }
+        return match;
+    };
+
+    getElementsType() {
+
+        return this._element[0].nodeName == "FORM";
     }
 }

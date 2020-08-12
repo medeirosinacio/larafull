@@ -15,6 +15,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('layouts.app2')->with('adminlte', AdminLte::class);
+        return view('layouts.app');
     }
 }

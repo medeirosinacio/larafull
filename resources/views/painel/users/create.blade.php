@@ -3,6 +3,17 @@
 @section('title', 'Cadastrar usuário')
 @section('title_icon', 'fas fa-users-cog')
 
+@component('layouts.partials.breadcrumb')
+
+    @slot('breadcrumbs', [
+
+        ['name' => 'Usuários', 'link' => '/painel/usuarios/listar'],
+        ['name' => 'Cadastrar']
+
+    ])
+
+@endcomponent
+
 @section('content')
 
     @component('layouts.partials.card')

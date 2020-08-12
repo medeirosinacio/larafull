@@ -3,6 +3,17 @@
 @section('title', 'Perfil de usuário')
 @section('title_icon', 'fas fa-users')
 
+@component('layouts.partials.breadcrumb')
+
+    @slot('breadcrumbss', [
+
+        ['name' => '5555', 'link' => '555'],
+        ['name' => '666', 'link' => '666']
+
+    ])
+
+@endcomponent
+
 @section('content')
 
     @component('layouts.partials.card')
@@ -11,7 +22,7 @@
             [
                 'name' => 'Editar',
                 'icon' => 'fas fa-pencil-alt',
-                'url' => "painel/usuarios/{$user->id}/editar",
+                'link' => "painel/usuarios/{$user->id}/editar",
             ]]);
 
         @slot('content')

@@ -293,6 +293,11 @@ return [
                     'url' => 'https://github.com/medeirosinacio/larafull',
                 ],
                 [
+                    'text' => 'Bootstrap 4.0',
+                    'target' => '_blank',
+                    'url' => 'https://getbootstrap.com/docs/4.0/getting-started/introduction/',
+                ],
+                [
                     'text' => 'AdminLTE 3.0',
                     'submenu' => [
                         [
@@ -308,7 +313,7 @@ return [
                         [
                             'text' => 'Laravel AdminLTE',
                             'target' => '_blank',
-                            'url' => 'https://github.com/jeroennoten/Laravel-AdminLTE/#63-logo',
+                            'url' => 'https://github.com/jeroennoten/Laravel-AdminLTE/',
                         ],
                     ],
                 ],
@@ -318,7 +323,52 @@ return [
                     'url' => 'https://laravelcollective.com/docs/6.0/html',
                 ]
             ]
-        ]
+        ],
+        [
+            'text' => 'Ferramentas',
+            'icon' => 'fa fa-toolbox',
+            'submenu' => [
+                [
+                    'text' => 'Limpar cache',
+                    'url' => 'painel/sys/clean-cache',
+                    'data' => [
+                        'link-ajax' => 'true',
+                        'id' => 'clean-cache',
+                    ],
+                ],
+                [
+                    'text' => 'phpinfo',
+                    'url' => 'painel/sys/phpinfo',
+                    'target' => '_blank',
+                ]
+            ]
+        ],
+        [
+            'text' => 'Dev',
+            'icon' => 'fas fa-laptop-code',
+            'submenu' => [
+                [
+                    'text' => 'Mailhog',
+                    'url' => 'http://' . env('APP_HOST') . ':8025',
+                    'target' => '_blank',
+                ],
+                [
+                    'text' => 'PgAdmin',
+                    'url' => 'http://' . env('APP_HOST') . ':5050',
+                    'target' => '_blank',
+                ],
+                [
+                    'text' => 'Redis Admin',
+                    'url' => 'http://' . env('APP_HOST') . ':8081',
+                    'target' => '_blank',
+                ],
+                [
+                    'text' => 'Mailhog',
+                    'url' => 'http://' . env('APP_HOST') . ':8025',
+                    'target' => '_blank',
+                ]
+            ]
+        ],
     ],
 
     /*
