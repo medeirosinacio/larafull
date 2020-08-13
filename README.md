@@ -22,7 +22,7 @@ Principais características:
 - Diversas classes com funcionalidades genéricas  para estender seus modelos, migrations e validações;
 - Projeto em 100% em [Docker](https://www.docker.com/) configurado para subir individualmente ou via [Vagrant](https://www.vagrantup.com/);
 
-A documentação completa de uso e instalação pode ser lida [aqui](.docs/documentation.md).
+A documentação completa de uso e instalação pode ser lida [aqui](./docs/documentation.md).
 
 ## License
 
