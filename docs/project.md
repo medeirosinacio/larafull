@@ -14,13 +14,13 @@ Usamos o como layout da aplicação o template [AdminLTE v3](https://adminlte.io
 
 Para instalação do template foi usado o pacote [jeroennoten/Laravel-AdminLTE](https://github.com/jeroennoten/Laravel-AdminLTE/), consulte a documentação para saber mais da implementação e uso. 
 
-Os assets são divididos em dois domínios para não compartilhar o código, em [*resources/views/site*](./resources/views/site) contem os arquivos disponíveis quando não á autenticação, usamos para carregar o mínimo possível de scripts e css na pagina de login ou recuperação de senha.  Em [*resources/views/painel*](./resources/views/painel) estão os privados, os scripts e css que só serão carregados no sistema, com o usuário logado, funções ajax ou estilos podem ser encontrados ai. 
+Os assets são divididos em dois domínios para não compartilhar o código, em [*resources/views/site*](./resources/views/site) contem os arquivos disponíveis quando não á autenticação, usamos para carregar o mínimo possível de scripts e css na pagina de login ou recuperação de senha.  Em [*resources/views/painel*](../resources/views/painel) estão os privados, os scripts e css que só serão carregados no sistema, com o usuário logado, funções ajax ou estilos podem ser encontrados ai. 
 
 ## *# Criação de paginas*
 
 Todo o projeto foi montado e estruturado para o mínimo possível de repetição de layout, basicamente todas as paginas PODEM ter a mesma estrutura graças a componentização das sessões do layout, como exemplo, abaixo uma tela de cadastro qualquer, ela contem todo o layout, com breadcrumb, titulo e formulários dinâmicos.
 
-![store_model_example](.\images\store_model_example.png)
+![store_model_example](./images/store_model_example.png)
 
 
 
