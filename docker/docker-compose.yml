@@ -17,7 +17,6 @@ services:
       - ../:/app
       - ./nginx/${APP_ENV}-conf/nginx.conf:/etc/nginx/nginx.conf
       - ./nginx/${APP_ENV}-conf:/etc/nginx/custom/
-      - ./nginx/entrypoint/docker-entrypoint.sh:/docker-entrypoint.d/1-entrypoint.sh
       - ./ssl/:/etc/ssl/
       - phpsocket:/var/run/
       - ${LOGS_FOLDER}/nginx:/var/log/nginx/

@@ -29,9 +29,7 @@ Vagrant.configure("2") do |config|
     # Dependencia "env-to-server" para copiar as variáveis do arquivo .env para os scripts bash
     GLOBAL_ENV = set_env Dir.pwd
     config.vm.provision "shell", inline: GLOBAL_ENV, run: "always"
-
-	# Script de atualização do sistema
- 	config.vm.provision "shell", path: "./scripts/updatesystem.sh", privileged: true
+    config.vm.provision "shell", path: "./scripts/fix_dns.sh", privileged: true, run: "always"
 
     # Copia a chave SSH | Dependencia "ssh-copy" para copiar chave ssh para o servidor
     if ENV['SSH_COPY'] == 'true'
@@ -41,6 +39,9 @@ Vagrant.configure("2") do |config|
             config.vm.provision "shell", path: "./scripts/sshcopy.sh", :args => [SSH_COPY_PRIVATE_KEY, SSH_COPY_PUBLIC_KEY]
        end
     end
+
+	# Script de atualização do sistema
+ 	config.vm.provision "shell", path: "./scripts/updatesystem.sh", privileged: true
 
  	# Reiniciar servidor apos updatesystem.sh
     config.vm.provision :reload
