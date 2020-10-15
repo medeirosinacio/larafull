@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+
 sudo su
 
 source /var/hostvars
@@ -21,16 +22,17 @@ if [ ! -f /var/init ]
     --user $(id -u):$(id -g) \
     composer update
 
-    echo -e "${g}Atualizando npm...${nc}"
-    cd /app
-    npm install --no-bin-links
-    npm run dev
 
-    docker exec laravel-phpfpm php bin/artisan migrate --seed
+    echo -e "${g}Atualizando npm...${nc}"
+#    cd /app
+#    npm install --no-bin-links
+#    npm run dev
+
+#    docker exec laravel-phpfpm php bin/artisan migrate --seed
 
     echo -e "${g}Limpando cache...${nc}"
-    docker exec laravel-phpfpm php bin/artisan config:cache
-    docker exec laravel-phpfpm php bin/artisan config:clear
+    docker exec laravel-phpfpm php artisan config:cache
+    docker exec laravel-phpfpm php artisan config:clear
 
     echo -e "${g}Atualizando permissões...${nc}"
     chown vagrant:vagrant /app/*

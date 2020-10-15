@@ -2,44 +2,17 @@
 
 use Illuminate\Support\Facades\Route;
 
-// Public URL - Login
-// Authentication Routes...
-Route::get('/', 'Auth\LoginController@showLoginForm')->name('login');
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register web routes for your application. These
+| routes are loaded by the RouteServiceProvider within a group which
+| contains the "web" middleware group. Now create something great!
+|
+*/
 
-Route::get('/login', fn() => redirect('/'));
-Route::post('login', 'Auth\LoginController@login');
-Route::post('logout', 'Auth\LoginController@logout')->name('logout');
-
-// Registration Routes...
-Route::get('register', 'Auth\RegisterController@showRegistrationForm');
-Route::post('register', 'Auth\RegisterController@register');
-
-// Password Reset Routes...
-Route::get('password/reset/{token?}', 'Auth\ResetPasswordController@showResetForm');
-Route::post('password/email', 'Auth\ResetPasswordController@sendResetLinkEmail');
-Route::post('password/reset', 'Auth\ResetPasswordController@reset');
-
-
-// PAINEL
-Route::prefix('painel')->middleware('auth')->group(function () {
-
-    Route::get('inicio', 'HomeController@index')->name('home');
-
-    Route::get('usuarios/listar', 'UsersController@list');
-    Route::get('usuarios/cadastrar', 'UsersController@showStoreForm');
-    Route::post('usuarios/cadastrar', 'UsersController@store');
-    Route::get('usuarios/{id}', 'UsersController@show');
-    Route::get('usuarios/{id}/editar', 'UsersController@showUpdateForm');
-    Route::post('usuarios/{id}/editar', 'UsersController@update');
-
-    # SUPORT
-    Route::get("sys/clean-cache", "Controller@cleanCache");
-    Route::get("sys/phpinfo", "Controller@phpinfo");
-
+Route::get('/', function () {
+    return view('welcome');
 });
-
-
-
-
-
-

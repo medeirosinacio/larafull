@@ -1,7 +1,5 @@
 <?php
 
-use App\Support\Notifier;
-
 return [
 
     /*
@@ -41,7 +39,7 @@ return [
     |
     */
 
-    'debug' => (bool)env('APP_DEBUG', false),
+    'debug' => (bool) env('APP_DEBUG', false),
 
     /*
     |--------------------------------------------------------------------------
@@ -69,7 +67,7 @@ return [
     |
     */
 
-    'timezone' => env('TIMEZONE', 'UTC'),
+    'timezone' => 'UTC',
 
     /*
     |--------------------------------------------------------------------------
@@ -82,7 +80,7 @@ return [
     |
     */
 
-    'locale' => 'pt_BR',
+    'locale' => 'en',
 
     /*
     |--------------------------------------------------------------------------
@@ -108,7 +106,7 @@ return [
     |
     */
 
-    'faker_locale' => 'pt_BR',
+    'faker_locale' => 'en_US',
 
     /*
     |--------------------------------------------------------------------------
@@ -167,8 +165,6 @@ return [
         /*
          * Package Service Providers...
          */
-        Collective\Html\HtmlServiceProvider::class,
-        App\Providers\FormServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -178,13 +174,6 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-        App\Providers\RouteServiceProvider::class,
-
-        /*
-         * Custom application Service Providers...
-         */
-        App\Providers\MacroServiceProvider::class,
-
 
     ],
 
@@ -237,10 +226,6 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-
-        'Form' => Collective\Html\FormFacade::class,
-        'Html' => Collective\Html\HtmlFacade::class,
-        'Notifier' => Notifier::class,
 
     ],
 

@@ -3,8 +3,6 @@
 namespace App\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
-use Illuminate\Contracts\Events\Dispatcher;
-use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
 class Kernel extends ConsoleKernel
@@ -19,22 +17,9 @@ class Kernel extends ConsoleKernel
     ];
 
     /**
-     * Create a new console kernel instance.
-     *
-     * @param \Illuminate\Contracts\Foundation\Application $app
-     * @param \Illuminate\Contracts\Events\Dispatcher $events
-     * @return void
-     */
-    public function __construct(Application $app, Dispatcher $events)
-    {
-        $app->useEnvironmentPath(base_path() . '/docker'); //here customize the path
-        parent::__construct($app, $events);
-    }
-
-    /**
      * Define the application's command schedule.
      *
-     * @param \Illuminate\Console\Scheduling\Schedule $schedule
+     * @param  \Illuminate\Console\Scheduling\Schedule  $schedule
      * @return void
      */
     protected function schedule(Schedule $schedule)
@@ -49,7 +34,7 @@ class Kernel extends ConsoleKernel
      */
     protected function commands()
     {
-        $this->load(__DIR__ . '/Commands');
+        $this->load(__DIR__.'/Commands');
 
         require base_path('routes/console.php');
     }

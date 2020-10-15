@@ -101,19 +101,21 @@ typings/
 /node_modules
 /public/hot
 /public/storage
+/storage/*.key
+/vendor
+#.env
+.env.backup
+.phpunit.result.cache
+npm-debug.log
+yarn-error.log
 /public/assets
 /public/mix-manifest.json
 /public/favicon.ico
-/storage/*.key
 /storage/logs/*
-/vendor
 /database/*.sqlite
 /database/*.sqlite-journal
-.phpunit.result.cache
 /server/.vagrant
-
-npm-debug.log
-yarn-error.log
 
 # include .gitkeep
 !**/.gitkeep
+laravel/
